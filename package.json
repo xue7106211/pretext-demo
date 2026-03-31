@@ -1,0 +1,12 @@
+{
+  "scripts": {
+    "build": "npx esbuild main.js --bundle --outfile=dist/main.bundle.js --format=esm --target=es2022",
+    "dev": "npx serve . -p 3000"
+  },
+  "dependencies": {
+    "@chenglou/pretext": "^0.0.3"
+  },
+  "devDependencies": {
+    "serve": "^14.2.6"
+  }
+}

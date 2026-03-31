@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pretext 图文混排 Demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Serif+SC:wght@400;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { background: #faf8f5; color: #2c2825; }
+    body { font-family: 'Noto Serif SC', 'Playfair Display', Georgia, serif; min-height: 100vh; }
+
+    #canvas-stage { position: relative; width: 100%; }
+
+    .text-line {
+      position: absolute; white-space: pre;
+      user-select: text; -webkit-user-select: text;
+    }
+    .headline-line {
+      position: absolute; white-space: pre;
+      font-family: 'Playfair Display', 'Noto Serif SC', serif;
+      font-weight: 700; color: #1a1714; letter-spacing: -0.3px;
+    }
+    .subtitle-line {
+      position: absolute; white-space: pre;
+      font-family: 'Inter', sans-serif;
+      font-weight: 300; color: #8a8078; letter-spacing: 0.5px;
+    }
+    .drop-cap {
+      position: absolute; pointer-events: none;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700; color: #c4956a;
+    }
+    .pullquote-box {
+      position: absolute; pointer-events: none;
+      border-left: 2px solid #c4956a;
+    }
+    .pullquote-line {
+      position: absolute; white-space: pre;
+      font-family: 'Playfair Display', serif;
+      font-style: italic; color: #8a7060;
+    }
+    .image-frame {
+      position: absolute; border-radius: 6px; overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04);
+      background: #e8e2da; cursor: grab; touch-action: none;
+      transition: box-shadow 0.2s ease;
+    }
+    .image-frame.dragging {
+      cursor: grabbing;
+      box-shadow: 0 16px 56px rgba(0,0,0,0.18), 0 6px 20px rgba(0,0,0,0.1);
+      z-index: 20 !important;
+    }
+    .image-frame img { display: block; width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
+    .image-caption {
+      position: absolute; white-space: pre;
+      font-family: 'Inter', sans-serif; font-weight: 400; font-size: 11px;
+      color: #a09890; letter-spacing: 0.3px;
+    }
+    .divider {
+      position: absolute;
+      background: linear-gradient(90deg, transparent, #d4ccc4, transparent);
+      height: 1px;
+    }
+    .nav-bar {
+      position: sticky; top: 0; z-index: 100;
+      height: 52px; display: flex; align-items: center; justify-content: space-between;
+      padding: 0 32px;
+      background: rgba(250,248,245,0.88); backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      font-family: 'Inter', sans-serif;
+    }
+    .nav-logo { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 18px; color: #1a1714; }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { font-size: 13px; color: #8a8078; text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: #1a1714; }
+    .footer-bar {
+      text-align: center; padding: 20px;
+      font-family: 'Inter', sans-serif; font-size: 11px; color: #b0a89e;
+      border-top: 1px solid rgba(0,0,0,0.04);
+    }
+    #loading {
+      display: flex; align-items: center; justify-content: center;
+      height: 60vh; font-family: 'Inter', sans-serif; font-size: 14px; color: #b0a89e;
+    }
+    @media (max-width: 768px) { .nav-links { display: none; } .nav-bar { padding: 0 20px; } }
+  </style>
+</head>
+<body>
+  <nav class="nav-bar"><div class="nav-logo">Pretext Editorial</div>
+    <ul class="nav-links"><li><a href="#">文章</a></li><li><a href="#">关于</a></li><li><a href="#">GitHub</a></li></ul>
+  </nav>
+  <div id="loading">正在加载字体...</div>
+  <div id="canvas-stage"></div>
+  <footer class="footer-bar">拖拽图片查看实时混排 · Powered by @chenglou/pretext · 零 DOM 测量 · 纯算术排版</footer>
+  <script type="module" src="./dist/main.bundle.js"></script>
+</body>
+</html>
