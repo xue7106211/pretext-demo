@@ -1,2 +1,35 @@
+# Dependencies
 node_modules/
+
+# Build / framework output
 dist/
+.next/
+out/
+build/
+.turbo/
+.cache/
+.parcel-cache/
+
+# Env & local secrets
+.env
+.env.*
+!.env.example
+
+# Logs & coverage
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+coverage/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+*.swp
+*.swo
+
+# Optional local tooling
+*.local
